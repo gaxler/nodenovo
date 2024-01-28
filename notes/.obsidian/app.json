@@ -1,0 +1,11 @@
+{
+  "alwaysUpdateLinks": true,
+  "useMarkdownLinks": true,
+  "attachmentFolderPath": "static",
+  "newLinkFormat": "absolute",
+  "promptDelete": false,
+  "spellcheck": true,
+  "vimMode": true,
+  "newFileLocation": "folder",
+  "newFileFolderPath": "notes"
+}
