@@ -266,6 +266,7 @@ if __name__ == "__main__":
         note_title = doc_obj.header.get(FRONT_MATTER_TITLE, doc_obj.path.stem) 
 
         rendered_html = note_template.render(
+            subdomain=SUBDOMAIN,
             header=note_title,
             content=input_content,
             backlinks=doc_obj.backlinks,
@@ -291,6 +292,7 @@ if __name__ == "__main__":
         all_posts_html = (out / ALL_POSTS_NAME).with_suffix(".html")
         all_posts_temp = env.get_template("list.html")
         rendered_html = all_posts_temp.render(
+            subdomain=SUBDOMAIN,
             posts=all_posts_list,
             header_menu=top_level,
             header=ALL_POSTS_NAME,
