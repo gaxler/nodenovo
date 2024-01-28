@@ -13,6 +13,7 @@ from jinja2 import Environment, FileSystemLoader
 ALL_POSTS_NAME = "All Posts" # set to None to get rid of the all notes page
 FRONT_MATTER_TITLE = "title"
 FRONT_MATTER_DATE = "date"
+SUBDOMAIN = "/"
 
 DATE_FORMATS = [
     "%Y-%m-%d",
@@ -97,7 +98,7 @@ def normalize_link(link: str, from_root=False) -> str:
     stem = p.stem
     uri = str(p.with_stem(stem).with_suffix(".html"))
     if from_root:
-        return f"/{uri}"
+        return f"{SUBDOMAIN}{uri}"
     return uri
 
 
@@ -197,7 +198,20 @@ class NoteProcessor(NodeVisitor):
         return
 
 
+
+def _update_sub_domain():
+    import sys
+    if len(sys.argv) < 2:
+        return
+    repo_name = sys.argv[1] # gh action sets this to <user>/<repo>
+    user, repo = repo_name.split("/")
+    global SUBDOMAIN
+    SUBDOMAIN = f"/{repo}/"
+    print(f"Setting subdomain to {SUBDOMAIN}")
+
+
 if __name__ == "__main__":
+    _update_sub_domain()
     env = Environment(loader=FileSystemLoader("templates"))
     # Load the template from file
     note_template = env.get_template("note.html")
