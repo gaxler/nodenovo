@@ -1,4 +1,4 @@
 ---
 title: Reading and responding to stuff
 ---
-- [[NoProp]] has gradeints
+- [NoProp](notes/NoProp.md) actual has gradients
